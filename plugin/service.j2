@@ -1,0 +1,11 @@
+[Unit]
+Description=Alfred Project - Spine module
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/default/alfred
+ExecStartPre=source {{ plugin_virtualenv_path }}/bin/activate
+ExecStart={{ plugin_content_path }}/alfred-spine.py $ALFRED_SPINE_INPUT $ALFRED_SPINE_OUTPUT
+
+[Install]
+WantedBy=multi-user.target
