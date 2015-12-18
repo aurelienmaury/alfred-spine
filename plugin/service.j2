@@ -5,8 +5,7 @@ Description=Alfred Project - Spine module
 Type=simple
 User=alfred
 EnvironmentFile=/etc/default/alfred
-ExecStartPre=source {{ plugin_virtualenv_path }}/bin/activate
-ExecStart={{ plugin_content_path }}/alfred-spine.py $ALFRED_SPINE_INPUT $ALFRED_SPINE_OUTPUT
+ExecStart=/bin/bash -c '. {{ plugin_virtualenv_path }}/bin/activate && {{ plugin_content_path }}/alfred-spine.py $ALFRED_SPINE_INPUT $ALFRED_SPINE_OUTPUT'
 
 [Install]
 WantedBy=multi-user.target
