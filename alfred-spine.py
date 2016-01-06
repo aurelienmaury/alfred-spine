@@ -14,6 +14,7 @@ if not input_socket:
     if not input_socket:
         sys.exit("Could not find Alfred's input socket from cli nor env var (ALFRED_SPINE_INPUT)")
 
+old_umask = os.umask(007)
 spine_input = zmq.Context().socket(zmq.PULL)
 spine_input.bind(input_socket)
 print "Bound to:\t" + input_socket
@@ -31,7 +32,7 @@ print "Publishing on:\t" + output_socket
 
 spine_output = zmq.Context().socket(zmq.PUB)
 spine_output.bind(output_socket)
-
+os.umask(old_umask)
 
 def main():
     try:
